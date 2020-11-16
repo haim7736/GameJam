@@ -9,6 +9,8 @@ public class InGame : MonoBehaviour
     public int myNum = 10;
     public Text CountText;
     public Text FavorabilityText;
+    public Text moneyText;
+
 
     public GameObject pit;
     public GameObject one;
@@ -21,9 +23,13 @@ public class InGame : MonoBehaviour
 
     private bool FoodCheck;
     public int Favorability;
+    public int money;
+
+
 
     private int FavorabilityCh;
     bool check;
+
 
 
     void Start()
@@ -45,6 +51,7 @@ public class InGame : MonoBehaviour
         Debug.Log(damage);
         CountText.text = "Count:" + myNum;
         FavorabilityText.text = "호감도:" + Favorability;
+        moneyText.text = money + "원";
         if (myNum <= 0)
         {
             one.SetActive(false);
@@ -79,17 +86,24 @@ public class InGame : MonoBehaviour
     public void Click()
     {
         myNum-= damage;
+        money += 10;
     }
 
     public void Foood()
     {
-        if (timer <= 0)
-        {
-            pit.SetActive(true);
-            FoodCheck = true;
-            Favorability += 50;
-            FavorabilityCh += 50;
 
+        if (money >= 50)
+        {
+           
+            if (timer <= 0)
+            {
+                pit.SetActive(true);
+                FoodCheck = true;
+                Favorability += 50;
+                FavorabilityCh += 50;
+                money -= 50;
+
+            }
         }
       
 
